@@ -1,14 +1,23 @@
+import 'package:estados/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../models/user.dart';
 
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userController = Get.put(UserController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Page 1'),
       ),
-      body: UserInfo(),
+      body: Obx(() => userController.userExists.value
+          ? UserInfo(
+              user: userController.user.value,
+            )
+          : NoUser()),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.accessibility_new),
         //onPressed: () => Navigator.pushNamed(context, '/page2')
@@ -21,6 +30,9 @@ class FirstPage extends StatelessWidget {
 }
 
 class UserInfo extends StatelessWidget {
+  final User user;
+
+  const UserInfo({super.key, required this.user});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,8 +45,8 @@ class UserInfo extends StatelessWidget {
           Text('General',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),
-          ListTile(title: Text('Nombre: ')),
-          ListTile(title: Text('Edad: ')),
+          ListTile(title: Text('Nombre: ${user.name}')),
+          ListTile(title: Text('Edad: ${user.age}')),
           Text('Profesiones',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),
@@ -42,6 +54,19 @@ class UserInfo extends StatelessWidget {
           ListTile(title: Text('Profesion 1')),
           ListTile(title: Text('Profesion 1')),
         ],
+      ),
+    );
+  }
+}
+
+class NoUser extends StatelessWidget {
+  const NoUser({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('No hay usuario seleccionado'),
       ),
     );
   }
