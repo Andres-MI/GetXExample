@@ -38,6 +38,13 @@ class SecondPage extends StatelessWidget {
                 userController.addJob('Retired digeridoo player');
                 userController.addJob('Flutter expert');
               }),
+          MaterialButton(
+              child: Text('Cambiar Tema',
+                  style: TextStyle(color: Colors.white)),
+              color: Colors.blue,
+              onPressed: () {
+                Get.isDarkMode ? Get.changeTheme(ThemeData.light()) : Get.changeTheme(ThemeData.dark());
+              }),
         ],
       )),
     );
