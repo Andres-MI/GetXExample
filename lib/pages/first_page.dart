@@ -50,9 +50,9 @@ class UserInfo extends StatelessWidget {
           Text('Profesiones',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),
-          ListTile(title: Text('Profesion 1')),
-          ListTile(title: Text('Profesion 1')),
-          ListTile(title: Text('Profesion 1')),
+          ...user.jobs.map((job) => ListTile(
+                title: Text(job),
+              ))
         ],
       ),
     );

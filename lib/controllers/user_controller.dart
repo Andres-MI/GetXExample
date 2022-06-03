@@ -15,4 +15,11 @@ class UserController extends GetxController {
       val?.age = age;
     });
   }
+
+  void addJob(String job) {
+    this.user.update((val) {
+      //val?.jobs.add(job);
+      val?.jobs = [...val.jobs, job];
+    });
+  }
 }

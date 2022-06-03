@@ -34,7 +34,10 @@ class SecondPage extends StatelessWidget {
               child: Text('Añadir Profesion',
                   style: TextStyle(color: Colors.white)),
               color: Colors.blue,
-              onPressed: () {}),
+              onPressed: () {
+                userController.addJob('Retired digeridoo player');
+                userController.addJob('Flutter expert');
+              }),
         ],
       )),
     );
